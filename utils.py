@@ -70,8 +70,9 @@ def take_input(message,low_limit=0, high_limit=1):
             print("Invalid input format. Please try again")
             continue
     
-        if input_value <= low_limit or input_value > high_limit:
+        if input_value < low_limit or input_value > high_limit:
             print("Value out of range. Please try again")
             continue
         else:
             break
+    return input_value

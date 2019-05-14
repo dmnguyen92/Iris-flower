@@ -41,11 +41,12 @@ clf_knn.fit(X.values,Y)
 if __name__ == '__main__':
     resume = True
     while resume == True:
+        print('=====================================')
         # Take input
-        sepal_length = take_input('Input SEPAL LENGTH between 3cm and 9cm: ', 3.,9.)
-        sepal_width = take_input('Input SEPAL WIDTH between 1.5cm and 5cm: ', 1.5, 5.)
-        petal_length = take_input('Input PETAL LENGTH between 0.5cm and 7.5cm: ', 0.5, 7.5)
-        petal_width = take_input('Input PETAL WIDTH between 0cm and 3cm: ', 0., 3.)
+        sepal_length = take_input('SEPAL LENGTH (cm) within range [3,9]: ', 3.,9.)
+        sepal_width = take_input('SEPAL WIDTH (cm) within range [1.5,5]: ', 1.5, 5.)
+        petal_length = take_input('PETAL LENGTH (cm) within range [0.5, 7.5]: ', 0.5, 7.5)
+        petal_width = take_input('PETAL WIDTH (cm) within range [0,3]: ', 0., 3.)
         
         # Transform data
         input_point = np.asarray([sepal_length, sepal_width, petal_length, petal_width]).reshape(1,-1)
@@ -53,7 +54,7 @@ if __name__ == '__main__':
         input_point = pca.transform(input_point)
         
         # Find points
-        top_N, predict_prob = find_closest(input_point, df_pca)
+        top_N, predict_prob = find_closest(input_point, df_pca, clf_knn)
         
         # Plot
         fig = plt.figure(figsize=(6,6))
@@ -61,10 +62,10 @@ if __name__ == '__main__':
         plot_closest(input_point, df_pca, top_N, predict_prob, ax)
         plt.gca().set_aspect('equal', adjustable='box')
         plt.tight_layout()
-        plt.show()
+        plt.show(block=False)
         
         # Resume
-        resume_input = take_input("Type 'exit' to exit code, any other key to resume")
+        resume_input = input("Type 'exit' to exit code, any other key to continue: ")
         if resume_input == 'exit':
             resume = False
 
