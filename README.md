@@ -24,5 +24,5 @@ The code use Python 3.7. All libaries used belong to the standard [Anaconda dist
 
 Displayed result when running ```$ python iris_plot.py```
 <p align="center">
-  <img src="images/demo_screen_with_text.png" width="800" title="Demo image">
+  <img src="images/demo_screen_with_text.png" width="900" title="Demo image">
 </p>
